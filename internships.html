@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Internship Listings | MicroIntern</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#0a66c2,#00c6ff,#7b2ff7);
+min-height:100vh;
+padding:40px;
+}
+
+h1{
+text-align:center;
+color:white;
+margin-bottom:40px;
+}
+
+.internship-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1000px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:10px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card h3{
+margin-top:0;
+color:#0a66c2;
+}
+
+.card p{
+margin:5px 0;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+border:none;
+border-radius:6px;
+background:#0a66c2;
+color:white;
+cursor:pointer;
+width:100%;
+}
+
+button:hover{
+background:#004182;
+}
+
+.nav-buttons{
+text-align:center;
+margin-bottom:30px;
+}
+
+.nav-buttons button{
+width:auto;
+padding:10px 20px;
+margin:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Available Internships</h1>
+
+<div class="nav-buttons">
+<button onclick="window.location.href='main.html'">Home</button>
+<button onclick="window.location.href='profile.html'">Profile</button>
+</div>
+
+<div class="internship-container">
+
+<div class="card">
+<h3>Frontend Developer Intern</h3>
+<p><b>Company:</b> TechNova</p>
+<p><b>Duration:</b> 3 Months</p>
+<p><b>Location:</b> Remote</p>
+<button onclick="apply('Frontend Developer Intern')">Apply</button>
+</div>
+
+<div class="card">
+<h3>Data Analyst Intern</h3>
+<p><b>Company:</b> DataCore</p>
+<p><b>Duration:</b> 2 Months</p>
+<p><b>Location:</b> Hybrid</p>
+<button onclick="apply('Data Analyst Intern')">Apply</button>
+</div>
+
+<div class="card">
+<h3>UI/UX Designer Intern</h3>
+<p><b>Company:</b> CreativeLabs</p>
+<p><b>Duration:</b> 3 Months</p>
+<p><b>Location:</b> Remote</p>
+<button onclick="apply('UI/UX Designer Intern')">Apply</button>
+</div>
+
+<div class="card">
+<h3>Mobile App Developer Intern</h3>
+<p><b>Company:</b> AppWorks</p>
+<p><b>Duration:</b> 4 Months</p>
+<p><b>Location:</b> On-site</p>
+<button onclick="apply('Mobile App Developer Intern')">Apply</button>
+</div>
+
+</div>
+
+<script>
+
+function apply(internship){
+
+let applied=localStorage.getItem("applications") || ""
+
+applied += internship + ", "
+
+localStorage.setItem("applications",applied)
+
+alert("Application submitted for " + internship)
+
+}
+
+</script>
+
+</body>
+
+</html>

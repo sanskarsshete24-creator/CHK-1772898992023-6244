@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | Internship Portal</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* Background */
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#0a66c2,#00c6ff,#7b2ff7);
+background-size:400% 400%;
+animation:gradientMove 10s ease infinite;
+}
+
+/* animated gradient */
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* login card */
+
+.login-container{
+
+width:380px;
+padding:40px;
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+
+border-radius:15px;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+
+text-align:center;
+
+color:white;
+
+}
+
+/* heading */
+
+.login-container h2{
+margin-bottom:25px;
+font-size:26px;
+}
+
+/* input group */
+
+.input-group{
+position:relative;
+margin-bottom:15px;
+}
+
+/* icons */
+
+.input-group i{
+position:absolute;
+left:12px;
+top:12px;
+color:#333;
+}
+
+/* inputs */
+
+.input-group input{
+
+width:100%;
+padding:12px 12px 12px 35px;
+
+border-radius:6px;
+border:none;
+
+outline:none;
+
+}
+
+/* login button */
+
+button{
+
+width:100%;
+padding:12px;
+
+border:none;
+
+border-radius:6px;
+
+background:#0a66c2;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+margin-top:10px;
+
+}
+
+button:hover{
+
+background:#004182;
+
+transform:translateY(-2px);
+
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+}
+
+/* small text */
+
+.footer-text{
+
+margin-top:15px;
+font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="login-container">
+
+<h2>🚀 Student Login</h2>
+
+<form onsubmit="login(event)">
+
+<div class="input-group">
+<i class="fa fa-user"></i>
+<input type="text" id="name" placeholder="Full Name" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-envelope"></i>
+<input type="email" id="email" placeholder="Gmail Address" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-graduation-cap"></i>
+<input type="text" id="college" placeholder="College Name" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-phone"></i>
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-lock"></i>
+<input type="password" id="password" placeholder="Password" required>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="footer-text">
+Find internships. Build your career.
+</div>
+
+</div>
+
+<script>
+
+function login(event){
+
+event.preventDefault()
+
+let name=document.getElementById("name").value
+let email=document.getElementById("email").value
+let college=document.getElementById("college").value
+let mobile=document.getElementById("mobile").value
+let password=document.getElementById("password").value
+
+if(name && email && college && mobile){
+
+/* SAVE STUDENT DATA */
+
+localStorage.setItem("name",name)
+localStorage.setItem("email",email)
+localStorage.setItem("college",college)
+localStorage.setItem("mobile",mobile)
+localStorage.setItem("password",password)
+
+/* REDIRECT TO DASHBOARD */
+
+window.location.href="main.html"
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

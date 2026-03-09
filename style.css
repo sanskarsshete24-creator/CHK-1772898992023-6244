@@ -1,0 +1,469 @@
+/* ================= GLOBAL ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+}
+
+body{
+background:#f6f8fc;
+color:#1f2937;
+line-height:1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+background:white;
+padding:16px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #e5e7eb;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#4f46e5;
+}
+
+nav a{
+text-decoration:none;
+color:#374151;
+margin-left:25px;
+font-weight:500;
+transition:0.25s;
+}
+
+nav a:hover{
+color:#4f46e5;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+text-align:center;
+padding:110px 20px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white;
+}
+
+.hero h1{
+font-size:44px;
+margin-bottom:15px;
+font-weight:700;
+}
+
+.hero p{
+font-size:18px;
+opacity:0.9;
+margin-bottom:30px;
+}
+
+button{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:white;
+color:#6366f1;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+padding:70px 8%;
+}
+
+/* ================= CARDS ================= */
+
+.card,
+.opportunity-card,
+.profile-card{
+
+background:white;
+border-radius:14px;
+padding:26px;
+margin-bottom:20px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.05);
+
+transition:all 0.25s ease;
+}
+
+.card:hover,
+.opportunity-card:hover,
+.profile-card:hover{
+
+transform:translateY(-6px);
+box-shadow:0 16px 40px rgba(0,0,0,0.12);
+
+}
+
+/* ================= TAGS ================= */
+
+.tags span{
+
+background:#eef2ff;
+color:#4f46e5;
+
+padding:6px 12px;
+border-radius:20px;
+
+font-size:12px;
+margin-right:6px;
+
+}
+
+/* ================= COMPANY LOGOS ================= */
+
+.companies{
+text-align:center;
+}
+
+.company-logos{
+margin-top:35px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:35px;
+}
+
+.company-logos img{
+opacity:0.75;
+transition:0.25s;
+}
+
+.company-logos img:hover{
+opacity:1;
+transform:scale(1.05);
+}
+
+/* ================= STATS ================= */
+
+.stats{
+display:flex;
+justify-content:space-around;
+text-align:center;
+gap:30px;
+}
+
+.stats h2{
+font-size:38px;
+color:#4f46e5;
+}
+
+.stats p{
+color:#6b7280;
+font-weight:500;
+}
+
+/* ================= SEARCH ================= */
+
+.search-filter{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.search-filter input,
+.search-filter select{
+
+padding:10px 14px;
+
+border:1px solid #e5e7eb;
+border-radius:8px;
+
+outline:none;
+
+}
+
+.search-filter input:focus{
+border-color:#6366f1;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+text-align:center;
+max-width:420px;
+margin:auto;
+}
+
+.profile-avatar{
+
+width:110px;
+height:110px;
+
+border-radius:50%;
+
+background:#6366f1;
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:40px;
+
+margin:auto;
+margin-bottom:15px;
+
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#111827;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:60px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+.stats{
+flex-direction:column;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+nav{
+flex-direction:column;
+gap:10px;
+}
+
+}
+/* ================= LOGIN PAGE MODERN DESIGN ================= */
+
+.login-body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background: linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);
+background-size: 300% 300%;
+animation: gradientMove 8s ease infinite;
+}
+
+/* Login Card */
+
+.login-container{
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
+
+padding:40px;
+width:360px;
+
+border-radius:18px;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+
+text-align:center;
+color:white;
+}
+
+/* Heading */
+
+.login-container h2{
+margin-bottom:20px;
+font-size:28px;
+font-weight:600;
+}
+
+/* Inputs */
+
+.login-container input,
+.login-container select{
+
+width:100%;
+padding:12px 14px;
+
+margin-bottom:15px;
+
+border:none;
+border-radius:10px;
+
+outline:none;
+
+font-size:14px;
+}
+
+/* Button */
+
+.login-container button{
+
+width:100%;
+padding:12px;
+
+border:none;
+border-radius:10px;
+
+background:white;
+color:#6366f1;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+}
+
+.login-container button:hover{
+
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+}
+
+/* Floating animation */
+
+@keyframes gradientMove{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+/* ================= HOME PAGE MODERN DESIGN ================= */
+
+.home-page{
+background: linear-gradient(180deg,#f8fafc,#eef2ff);
+}
+
+/* HERO SECTION */
+
+.home-page .hero{
+background: linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);
+background-size:300% 300%;
+animation: heroGradient 8s ease infinite;
+
+padding:120px 20px;
+text-align:center;
+color:white;
+}
+
+.home-page .hero h1{
+font-size:48px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.home-page .hero p{
+font-size:18px;
+opacity:0.9;
+margin-bottom:30px;
+}
+
+.home-page .hero button{
+background:white;
+color:#6366f1;
+padding:14px 32px;
+border-radius:30px;
+border:none;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.home-page .hero button:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* FEATURE CARDS */
+
+.home-page .card{
+
+background:white;
+border-radius:16px;
+
+padding:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+transition:all 0.3s ease;
+}
+
+.home-page .card:hover{
+
+transform:translateY(-10px);
+box-shadow:0 20px 45px rgba(0,0,0,0.15);
+
+}
+
+/* TAGS */
+
+.home-page .tags span{
+
+background:#eef2ff;
+color:#6366f1;
+
+padding:6px 12px;
+border-radius:20px;
+
+font-size:12px;
+margin-right:6px;
+
+}
+
+/* STATS */
+
+.home-page .stats{
+
+background:white;
+border-radius:20px;
+
+padding:40px 20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+.home-page .stats h2{
+font-size:40px;
+color:#6366f1;
+}
+
+/* COMPANY LOGOS */
+
+.home-page .company-logos img{
+opacity:0.7;
+transition:0.3s;
+}
+
+.home-page .company-logos img:hover{
+opacity:1;
+transform:scale(1.1);
+}
+
+/* HERO ANIMATION */
+
+@keyframes heroGradient{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internship Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#0a66c2;
+color:white;
+}
+
+.navbar button{
+margin-left:8px;
+padding:8px 12px;
+border:none;
+border-radius:6px;
+background:white;
+color:#0a66c2;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+padding:40px;
+}
+
+/* SEARCH */
+
+.search-bar{
+margin:20px 0;
+}
+
+.search-bar input{
+padding:10px;
+width:260px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* INTERNSHIP CARDS */
+
+.opportunities{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card button{
+margin-top:10px;
+margin-right:5px;
+padding:6px 10px;
+border:none;
+border-radius:5px;
+background:#0a66c2;
+color:white;
+cursor:pointer;
+}
+
+/* PANELS */
+
+.panel{
+display:none;
+margin-top:30px;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<h2>Internship Portal</h2>
+
+<div>
+<button onclick="goToProfile()">Profile</button>
+<button onclick="showSaved()">Saved</button>
+<button onclick="showApplications()">Applications</button>
+<button onclick="showNotifications()">Notifications</button>
+<button onclick="showRecommendations()">AI Recommendations</button>
+<button onclick="showCompanies()">Companies</button>
+<button onclick="showAnalytics()">Analytics</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<h1>Welcome to your Dashboard 🚀</h1>
+
+<div class="search-bar">
+<input type="text" id="searchInput" placeholder="Search internships..." onkeyup="searchInternships()">
+</div>
+
+<!-- INTERNSHIPS -->
+
+<div class="opportunities" id="internshipList">
+
+<div class="card">
+<h3>Frontend Developer Intern</h3>
+<p>Company: Google</p>
+<button onclick="applyInternship('Frontend Developer Intern')">Apply</button>
+<button onclick="saveInternship('Frontend Developer Intern')">Save</button>
+</div>
+
+<div class="card">
+<h3>Marketing Intern</h3>
+<p>Company: Amazon</p>
+<button onclick="applyInternship('Marketing Intern')">Apply</button>
+<button onclick="saveInternship('Marketing Intern')">Save</button>
+</div>
+
+<div class="card">
+<h3>UI/UX Designer</h3>
+<p>Company: Adobe</p>
+<button onclick="applyInternship('UI/UX Designer')">Apply</button>
+<button onclick="saveInternship('UI/UX Designer')">Save</button>
+</div>
+
+<div class="card">
+<h3>Data Analyst Intern</h3>
+<p>Company: Microsoft</p>
+<button onclick="applyInternship('Data Analyst Intern')">Apply</button>
+<button onclick="saveInternship('Data Analyst Intern')">Save</button>
+</div>
+
+</div>
+
+<!-- SAVED -->
+
+<div class="panel" id="savedPanel">
+<h2>⭐ Saved Internships</h2>
+<ul id="savedList"></ul>
+</div>
+
+<!-- APPLICATIONS -->
+
+<div class="panel" id="applicationPanel">
+<h2>📄 My Applications</h2>
+<ul id="applicationList"></ul>
+</div>
+
+<!-- NOTIFICATIONS -->
+
+<div class="panel" id="notificationPanel">
+<h2>🔔 Notifications</h2>
+<ul id="notificationList"></ul>
+</div>
+
+<!-- AI RECOMMENDATIONS -->
+
+<div class="panel" id="recommendationPanel">
+
+<h2>🧠 AI Recommended Internships</h2>
+
+<div class="card">
+<h3>Machine Learning Intern</h3>
+<p>Company: OpenAI</p>
+<button onclick="applyInternship('Machine Learning Intern')">Apply</button>
+</div>
+
+<div class="card">
+<h3>Full Stack Developer Intern</h3>
+<p>Company: Meta</p>
+<button onclick="applyInternship('Full Stack Developer Intern')">Apply</button>
+
+</div>
+
+</div>
+
+<!-- COMPANIES -->
+
+<div class="panel" id="companyPanel">
+
+<h2>🏢 Top Companies</h2>
+
+<div class="card">
+<h3>Google</h3>
+<p>Technology Company</p>
+<button onclick="viewCompany('Google')">View Profile</button>
+</div>
+
+<div class="card">
+<h3>Amazon</h3>
+<p>E-commerce Company</p>
+<button onclick="viewCompany('Amazon')">View Profile</button>
+</div>
+
+<div class="card">
+<h3>Microsoft</h3>
+<p>Software Company</p>
+<button onclick="viewCompany('Microsoft')">View Profile</button>
+</div>
+
+</div>
+
+<!-- ANALYTICS -->
+
+<div class="panel" id="analyticsPanel">
+
+<h2>📊 Dashboard Analytics</h2>
+
+<p>Total Saved Internships: <span id="savedCount">0</span></p>
+<p>Total Applications: <span id="applyCount">0</span></p>
+
+</div>
+
+</div>
+
+<script>
+
+let saved = 0
+let applied = 0
+
+function goToProfile(){
+window.location.href="profile.html"
+}
+
+/* SEARCH */
+
+function searchInternships(){
+
+let input=document.getElementById("searchInput").value.toLowerCase()
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+let text=card.innerText.toLowerCase()
+
+if(text.includes(input)){
+card.style.display="block"
+}else{
+card.style.display="none"
+}
+
+})
+
+}
+
+/* SAVE */
+
+function saveInternship(name){
+
+saved++
+
+let list=document.getElementById("savedList")
+
+let li=document.createElement("li")
+li.innerText=name
+
+list.appendChild(li)
+
+addNotification("Saved "+name)
+
+}
+
+/* APPLY */
+
+function applyInternship(name){
+
+applied++
+
+let list=document.getElementById("applicationList")
+
+let li=document.createElement("li")
+li.innerText=name+" - Applied"
+
+list.appendChild(li)
+
+addNotification("Applied for "+name)
+
+}
+
+/* NOTIFICATION */
+
+function addNotification(text){
+
+let list=document.getElementById("notificationList")
+
+let li=document.createElement("li")
+li.innerText=text
+
+list.appendChild(li)
+
+}
+
+/* PANELS */
+
+function togglePanel(id){
+
+let panels=document.querySelectorAll(".panel")
+
+panels.forEach(p=>p.style.display="none")
+
+document.getElementById(id).style.display="block"
+
+}
+
+/* BUTTONS */
+
+function showSaved(){togglePanel("savedPanel")}
+function showApplications(){togglePanel("applicationPanel")}
+function showNotifications(){togglePanel("notificationPanel")}
+function showRecommendations(){togglePanel("recommendationPanel")}
+function showCompanies(){togglePanel("companyPanel")}
+
+function showAnalytics(){
+
+togglePanel("analyticsPanel")
+
+document.getElementById("savedCount").innerText=saved
+document.getElementById("applyCount").innerText=applied
+
+}
+
+function viewCompany(name){
+alert(name+" company profile coming soon")
+}
+
+function logout(){
+window.location.href="index.html"
+}
+
+</script>
+
+</body>
+</html>

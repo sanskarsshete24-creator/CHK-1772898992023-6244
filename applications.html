@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Applications</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#0a66c2,#00c6ff,#7b2ff7);
+margin:0;
+padding:40px;
+color:white;
+text-align:center;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+color:black;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+
+li{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:6px;
+background:#0a66c2;
+color:white;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>My Applications</h1>
+
+<div class="container">
+
+<ul id="applicationList"></ul>
+
+<button onclick="window.location.href='main.html'">Back to Dashboard</button>
+
+</div>
+
+<script>
+
+let apps = localStorage.getItem("applications")
+
+if(apps){
+
+let list = apps.split(",")
+
+let ul = document.getElementById("applicationList")
+
+list.forEach(function(app){
+
+if(app.trim()!=""){
+
+let li = document.createElement("li")
+
+li.innerText = app + " - Applied"
+
+ul.appendChild(li)
+
+}
+
+})
+
+}else{
+
+document.getElementById("applicationList").innerHTML="<li>No applications yet</li>"
+
+}
+
+</script>
+
+</body>
+</html>

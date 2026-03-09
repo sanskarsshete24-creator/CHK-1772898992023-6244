@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile - MicroIntern</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#0a66c2,#00c6ff,#7b2ff7);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0;
+}
+
+.profile-container{
+width:420px;
+background:white;
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+overflow:hidden;
+}
+
+.profile-header{
+background:linear-gradient(135deg,#0a66c2,#00c6ff);
+color:white;
+padding:30px;
+text-align:center;
+}
+
+.profile-content{
+padding:30px;
+text-align:left;
+}
+
+.info{
+margin:15px 0;
+font-size:16px;
+padding:10px;
+border-radius:8px;
+background:#f4f6f9;
+}
+
+.resume-box{
+margin-top:20px;
+padding:15px;
+border-radius:8px;
+background:#f4f6f9;
+text-align:center;
+}
+
+.resume-box input{
+margin-top:10px;
+}
+
+.button-group{
+text-align:center;
+margin-top:20px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin:5px;
+font-size:14px;
+transition:0.3s;
+}
+
+.home-btn{
+background:#0a66c2;
+color:white;
+}
+
+.logout-btn{
+background:#dc3545;
+color:white;
+}
+
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="profile-container">
+
+<div class="profile-header">
+<h2>Student Profile</h2>
+</div>
+
+<div class="profile-content">
+
+<div class="info"><b>Full Name:</b> <span id="name"></span></div>
+<div class="info"><b>Email:</b> <span id="email"></span></div>
+<div class="info"><b>College Name:</b> <span id="college"></span></div>
+<div class="info"><b>Mobile Number:</b> <span id="mobile"></span></div>
+
+<div class="info">
+<b>Skills:</b><br>
+<input type="text" id="skillsInput" placeholder="Enter your skills (HTML, CSS, JavaScript)">
+<button onclick="saveSkills()">Save</button>
+<p id="skillsDisplay"></p>
+</div>
+
+<div class="resume-box">
+<b>Upload Resume</b><br>
+<input type="file" id="resume" accept=".pdf,.doc,.docx"><br>
+<small id="resumeName"></small>
+</div>
+
+<div class="button-group">
+<button class="home-btn" onclick="window.location.href='main.html'">Home</button>
+<button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+</div>
+
+</div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+apiKey: "AIzaSyCPtyw9gHpSyu5IeqZ_TAA4aALJdR1A2nI",
+authDomain: "microintern-820bc.firebaseapp.com",
+projectId: "microintern-820bc",
+storageBucket: "microintern-820bc.firebasestorage.app",
+messagingSenderId: "995357719137",
+appId: "1:995357719137:web:f366ddf4797a6a1a4c8820",
+measurementId: "G-NKV3RSL2HQ"
+};
+
+/* INITIALIZE FIREBASE */
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* DISPLAY PROFILE DATA */
+
+document.getElementById("name").innerText = localStorage.getItem("name");
+document.getElementById("email").innerText = localStorage.getItem("email");
+document.getElementById("college").innerText = localStorage.getItem("college");
+document.getElementById("mobile").innerText = localStorage.getItem("mobile");
+
+/* SAVE SKILLS */
+
+window.saveSkills = async function(){
+
+let skills=document.getElementById("skillsInput").value
+
+let name=localStorage.getItem("name")
+let email=localStorage.getItem("email")
+let college=localStorage.getItem("college")
+let mobile=localStorage.getItem("mobile")
+
+/* SAVE TO LOCAL STORAGE */
+
+localStorage.setItem("skills",skills)
+document.getElementById("skillsDisplay").innerText=skills
+
+/* SAVE TO FIREBASE */
+
+try{
+
+await addDoc(collection(db,"users"),{
+name:name,
+email:email,
+college:college,
+mobile:mobile,
+skills:skills
+})
+
+console.log("Saved to Firebase")
+
+}catch(error){
+
+console.log("Firebase error",error)
+
+}
+
+}
+
+/* LOAD SAVED SKILLS */
+
+let savedSkills=localStorage.getItem("skills")
+
+if(savedSkills){
+
+document.getElementById("skillsDisplay").innerText=savedSkills
+document.getElementById("skillsInput").value=savedSkills
+
+}
+
+/* RESUME DISPLAY */
+
+document.getElementById("resume").addEventListener("change",function(){
+
+let file=this.files[0]
+
+if(file){
+
+localStorage.setItem("resumeName",file.name)
+
+document.getElementById("resumeName").innerText="Uploaded: "+file.name
+
+}
+
+})
+
+let savedResume=localStorage.getItem("resumeName")
+
+if(savedResume){
+
+document.getElementById("resumeName").innerText="Uploaded: "+savedResume
+
+}
+
+</script>
+
+</body>
+</html>
